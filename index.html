@@ -1,122 +1,246 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NOTHING.EXE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOTHING | The Nothing Club</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
- margin:0;
- min-height:100vh;
- background:radial-gradient(ellipse,#350000,#050505 70%);
- color:white;
- font-family:Arial,sans-serif;
- display:flex;
- align-items:center;
- justify-content:center;
- text-align:center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.container{
- width:90%;
- max-width:430px;
- padding:25px 0;
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at 50% 40%, #350707 0%, #100303 45%, #050505 100%);
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
-.tag{
- color:#ff4444;
- letter-spacing:5px;
- font-size:11px;
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .12;
+    background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+    background-size: 40px 40px;
 }
 
-h1{
- font-size:42px;
- color:red;
- text-shadow:0 0 25px red;
+.container {
+    position: relative;
+    width: min(92%, 700px);
+    margin: auto;
+    padding: 35px 0 60px;
+    text-align: center;
 }
 
-p{color:#999}
-
-.stage{
- height:100px;
- margin-top:35px;
- position:relative;
+.logo {
+    font-size: clamp(42px, 12vw, 76px);
+    font-weight: 1000;
+    letter-spacing: 12px;
+    color: #fff;
+    text-shadow: 0 0 25px rgba(255,0,0,.5);
 }
 
-button{
- background:#c00020;
- color:white;
- border:1px solid red;
- padding:15px 20px;
- border-radius:7px;
- font-weight:bold;
- letter-spacing:1px;
- box-shadow:0 0 20px red;
- font-size:13px;
- cursor:pointer;
- margin:6px;
+.subtitle {
+    color: #a9a9a9;
+    letter-spacing: 5px;
+    font-size: 11px;
+    margin-top: 8px;
 }
 
-#btn{
- white-space:nowrap;
+.line {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, #a00000, transparent);
+    margin: 30px 0;
 }
 
-#message{
- color:#ff4444;
- min-height:40px;
- margin:15px 0;
+.status {
+    color: #ff3434;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
 }
 
-#counter{
- color:#666;
- font-size:12px;
+h2 {
+    font-size: clamp(24px, 7vw, 38px);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
 }
 
-.screen{
- display:none !important;
- margin-top:20px;
- border:1px solid #8b1010;
- background:#140606;
- padding:22px 16px;
- border-radius:12px;
- box-shadow:0 0 20px #500000;
+.description {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0 auto 25px;
+    max-width: 460px;
 }
 
-.screen.active{
- display:block !important;
+.stage {
+    position: relative;
+    width: 100%;
+    height: 310px;
+    max-width: 550px;
+    margin: 25px auto;
+    border: 1px solid rgba(255,40,40,.3);
+    border-radius: 16px;
+    background: rgba(10,0,0,.65);
+    box-shadow: 0 0 40px rgba(150,0,0,.12), inset 0 0 35px rgba(100,0,0,.12);
+    overflow: hidden;
 }
 
-input{
- width:100%;
- padding:14px;
- margin:12px 0;
- background:#080808;
- border:1px solid #8b1010;
- border-radius:6px;
- color:white;
- font-size:15px;
+.stage::before {
+    content: "INTERACTION ZONE";
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    color: #642222;
+    font-size: 9px;
+    letter-spacing: 4px;
 }
 
-.small{
- font-size:11px;
- color:#777;
- line-height:1.7;
+#runButton {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    padding: 17px 28px;
+    min-width: 175px;
+    border: 1px solid #ff4545;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #b40000, #520000);
+    color: white;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(255,0,0,.25);
+    transition: left .16s ease, top .16s ease, box-shadow .2s;
+    z-index: 2;
+    touch-action: manipulation;
 }
 
-.price{
- font-size:34px;
- color:#ff3333;
- font-weight:bold;
+#runButton:active {
+    box-shadow: 0 0 35px rgba(255,0,0,.8);
 }
 
-#verifyMessage{
- font-size:12px;
- color:#ff7777;
- min-height:35px;
+.counter {
+    margin-top: 22px;
+    color: #aaa;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.counter strong {
+    color: #ff3333;
+    font-size: 20px;
+}
+
+.progress {
+    width: min(90%, 300px);
+    height: 4px;
+    margin: 14px auto;
+    background: #292020;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progressFill {
+    width: 0%;
+    height: 100%;
+    background: #ff2020;
+    transition: width .25s;
+    box-shadow: 0 0 12px red;
+}
+
+.message {
+    min-height: 24px;
+    margin-top: 15px;
+    color: #ff6666;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.screen {
+    display: none;
+    animation: appear .5s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.primary {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 15px 30px;
+    border: 1px solid #ff3b3b;
+    border-radius: 7px;
+    background: #8d0000;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255,0,0,.2);
+}
+
+.primary:hover {
+    background: #c00000;
+    box-shadow: 0 0 30px rgba(255,0,0,.5);
+}
+
+.levelTag {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid #8d2020;
+    color: #ff5a5a;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.footer {
+    margin-top: 45px;
+    color: #555;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#transaction {
+    display: block;
+    width: min(100%, 330px);
+    margin: 20px auto 0;
+    padding: 15px;
+    background: #100707;
+    border: 1px solid #692020;
+    border-radius: 7px;
+    color: white;
+    outline: none;
+}
+
+.smallNote {
+    color: #777;
+    font-size: 11px;
+    line-height: 1.7;
+    margin-top: 18px;
 }
 </style>
 </head>
@@ -125,130 +249,191 @@ input{
 
 <div class="container">
 
- <div class="tag">SYSTEM STATUS: ONLINE</div>
- <h1>NOTHING.EXE</h1>
- <p>There is absolutely nothing here.</p>
- <p>Seriously. Don't click.</p>
+    <header>
+        <h1 class="logo">NOTHING</h1>
+        <p class="subtitle">THE NOTHING CLUB</p>
+    </header>
 
- <div id="game">
+    <div class="line"></div>
 
-  <div class="stage">
-   <button id="btn" onclick="clickMe()">DON'T CLICK ME</button>
-  </div>
+    <!-- LEVEL 1 -->
+    <section id="gameScreen" class="screen active">
 
-  <div id="message">I'm warning you.</div>
-  <div id="counter">CLICK COUNT: 000</div>
+        <div class="status">SYSTEM CHALLENGE / 001</div>
 
-  <div id="secret" class="screen">
-   <div class="tag">SECRET LEVEL 1 UNLOCKED</div>
-   <h2 style="color:red">WELCOME.</h2>
-   <p>WELCOME TO THE NOTHING CLUB.</p>
-   <button onclick="secretTwo()">ENTER LEVEL 2</button>
-  </div>
+        <h2>DON'T CLICK ME.</h2>
 
-  <div id="payment" class="screen">
-   <div class="tag">LEVEL 2 ACCESS</div>
-   <h2 style="color:red">PAY TO UNLOCK</h2>
-   <div class="price">৳10</div>
-   <p>Unlock Secret Level 2</p>
+        <p class="description">
+            You think you can click a button?
+            Try catching it first.
+            Five attempts. One final chance.
+        </p>
 
-   <p style="color:#ff7777">bKash Payment</p>
-   <p>Merchant/Payment number:</p>
-   <h3 style="color:#ff4444">NOT SET YET</h3>
+        <div class="stage" id="stage">
+            <button id="runButton" type="button">
+                DON'T CLICK ME
+            </button>
+        </div>
 
-   <input id="trx" type="text"
-   placeholder="Enter your Transaction ID">
+        <div class="counter">
+            ESCAPE ATTEMPTS:
+            <strong id="count">0</strong> / 5
+        </div>
 
-   <button onclick="verifyPayment()">VERIFY PAYMENT</button>
+        <div class="progress">
+            <div class="progressFill" id="progressFill"></div>
+        </div>
 
-   <div id="verifyMessage"></div>
+        <p class="message" id="message">
+            SYSTEM READY. MAKE YOUR MOVE.
+        </p>
 
-   <p class="small">
-   Payment verification is not connected yet.
-   Never send money to an unverified number.
-   </p>
+    </section>
 
-   <button onclick="backToSecret()">GO BACK</button>
-  </div>
+    <!-- LEVEL 1 COMPLETE -->
+    <section id="completeScreen" class="screen">
 
-  <div id="level2" class="screen">
-   <div class="tag">ACCESS GRANTED</div>
-   <h2 style="color:red">☠️ SECRET LEVEL 2</h2>
-   <p>YOU FOUND THE PLACE THAT DOESN'T EXIST.</p>
-   <button onclick="finalLevel()">WHAT'S NEXT?</button>
-  </div>
+        <div class="levelTag">LEVEL 01 / CLEARED</div>
 
-  <div id="final" class="screen">
-   <div class="tag">SYSTEM COMPLETE</div>
-   <h1>YOU WON?</h1>
-   <p>OR DID YOU?</p>
-   <p>NOTHING WAS EVERYTHING.</p>
-  </div>
+        <h2>YOU CAUGHT IT.</h2>
 
- </div>
+        <p class="description">
+            The button tried to escape five times.
+            But you finally got it.
+        </p>
+
+        <h2 style="color:#ff3333; margin-top:25px;">
+            LEVEL 1 COMPLETE
+        </h2>
+
+        <p class="description">
+            You are not finished yet.
+            The next challenge is waiting.
+        </p>
+
+        <button class="primary" onclick="showLevelTwo()">
+            CONTINUE →
+        </button>
+
+    </section>
+
+    <!-- LEVEL 2 -->
+    <section id="levelTwoScreen" class="screen">
+
+        <div class="levelTag">LEVEL 02 / LOCKED</div>
+
+        <h2>WELCOME TO NOTHING.</h2>
+
+        <p class="description">
+            You made it this far.
+            But the next level is still locked.
+        </p>
+
+        <div style="
+            border:1px solid #692020;
+            background:rgba(40,0,0,.35);
+            border-radius:12px;
+            padding:25px 15px;
+            margin-top:25px;
+        ">
+            <div style="font-size:42px; margin-bottom:15px;">🔒</div>
+
+            <h2 style="font-size:23px;">LEVEL 02</h2>
+
+            <p class="description" style="margin-top:12px;">
+                This level is currently under development.
+            </p>
+
+            <p style="color:#ff5555; font-size:12px; letter-spacing:2px;">
+                ACCESS NOT AVAILABLE
+            </p>
+        </div>
+
+        <button class="primary" onclick="location.reload()">
+            PLAY AGAIN
+        </button>
+
+    </section>
+
+    <div class="footer">
+        NOTHING IS WHAT IT SEEMS.
+        <br><br>
+        © 2026 NOTHING CLUB
+    </div>
+
 </div>
 
 <script>
-let clicks=0;
+const button = document.getElementById("runButton");
+const stage = document.getElementById("stage");
+const countText = document.getElementById("count");
+const message = document.getElementById("message");
+const progressFill = document.getElementById("progressFill");
 
-const btn=document.getElementById("btn");
-const message=document.getElementById("message");
-const counter=document.getElementById("counter");
+let escapes = 0;
+let completed = false;
 
-function showScreen(id){
- document.querySelectorAll(".screen").forEach(screen=>{
-  screen.classList.remove("active");
- });
- document.getElementById(id).classList.add("active");
+function moveButton() {
+    const stageRect = stage.getBoundingClientRect();
+
+    const buttonWidth = button.offsetWidth;
+    const buttonHeight = button.offsetHeight;
+
+    const padding = 12;
+
+    const maxX = stageRect.width - buttonWidth - padding;
+    const maxY = stageRect.height - buttonHeight - padding;
+
+    const minX = padding;
+    const minY = 55;
+
+    const x = minX + Math.random() * Math.max(0, maxX - minX);
+    const y = minY + Math.random() * Math.max(0, maxY - minY);
+
+    button.style.left = (x + buttonWidth / 2) + "px";
+    button.style.top = (y + buttonHeight / 2) + "px";
+    button.style.transform = "translate(-50%, -50%)";
 }
 
-function clickMe(){
- clicks++;
+button.addEventListener("click", function() {
 
- counter.innerText="CLICK COUNT: "+String(clicks).padStart(3,"0");
+    if (completed) return;
 
- if(clicks<10){
-  message.innerText="STOP CLICKING! "+clicks;
- }
+    if (escapes < 5) {
+        escapes++;
 
- if(clicks===10){
-  btn.style.display="none";
-  message.innerText="YOU SHOULDN'T BE HERE.";
-  showScreen("secret");
- }
+        countText.textContent = escapes;
+        progressFill.style.width = (escapes / 5 * 100) + "%";
 
- if(clicks>10){
-  message.innerText="LEVEL 1 ALREADY UNLOCKED.";
- }
-}
+        if (escapes < 5) {
+            message.textContent = "NICE TRY. I'M STILL FASTER.";
+            moveButton();
+        } else {
+            message.textContent = "FINAL CHANCE. CATCH ME NOW.";
+            moveButton();
+        }
 
-function secretTwo(){
- showScreen("payment");
-}
+    } else {
+        completed = true;
 
-function verifyPayment(){
- const trx=document.getElementById("trx").value.trim();
- const result=document.getElementById("verifyMessage");
+        button.style.display = "none";
+        message.textContent = "ACCESS GRANTED.";
+        progressFill.style.width = "100%";
 
- if(!trx){
-  result.innerText="Please enter your Transaction ID.";
-  return;
- }
+        setTimeout(function() {
+            document.getElementById("gameScreen").classList.remove("active");
+            document.getElementById("completeScreen").classList.add("active");
+        }, 500);
+    }
+});
 
- result.innerText=
- "SERVER NOT CONNECTED. Payment cannot be verified yet.";
-}
-
-function backToSecret(){
- showScreen("secret");
-}
-
-function finalLevel(){
- showScreen("final");
+function showLevelTwo() {
+    document.getElementById("completeScreen").classList.remove("active");
+    document.getElementById("levelTwoScreen").classList.add("active");
 }
 </script>
 
-<!-- StatCounter Code -->
+<!-- STATCOUNTER TRACKING -->
 <script type="text/javascript">
 var sc_project=13366282;
 var sc_invisible=1;
@@ -266,7 +451,7 @@ alt="Web Analytics">
 </a>
 </div>
 </noscript>
-<!-- End StatCounter Code -->
 
 </body>
 </html>
+
