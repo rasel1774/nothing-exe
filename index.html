@@ -3,210 +3,175 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NOTHING | The Nothing Club</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090909">
+<title>AURA CHECK</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
+*{box-sizing:border-box}
 body{
- min-height:100vh;
- background:radial-gradient(ellipse at center,#390707,#100303 55%,#050505);
- color:white;
- font-family:Arial,sans-serif;
- text-align:center;
- padding:30px 15px;
- overflow-x:hidden;
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse at top,#480d16 0%,#16070a 38%,#050505 75%);
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  display:flex;
+  justify-content:center;
+  padding:25px 15px;
 }
-
-.container{max-width:650px;margin:auto}
-
+.container{width:100%;max-width:520px}
+header{text-align:center;margin:20px 0 28px}
 .logo{
- font-size:clamp(48px,12vw,76px);
- font-weight:1000;
- letter-spacing:12px;
- text-shadow:0 0 25px #a00000;
+  font-size:clamp(35px,9vw,54px);
+  font-weight:1000;
+  letter-spacing:3px;
+  color:#fff;
+  text-shadow:0 0 25px #ff244b66;
 }
-
-.subtitle{
- color:#999;
- font-size:10px;
- letter-spacing:5px;
- margin-top:8px;
+.logo span{color:#ff3154}
+.tagline{
+  color:#bda7ac;
+  font-size:12px;
+  letter-spacing:4px;
+  margin-top:8px;
 }
-
-.line{
- height:1px;
- background:linear-gradient(90deg,transparent,#b00000,transparent);
- margin:30px 0;
+.card{
+  background:linear-gradient(145deg,#191316,#0c0b0c);
+  border:1px solid #57202c;
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 15px 45px #0009;
+  margin-bottom:18px;
 }
-
-.status{
- color:#ff4444;
- font-size:11px;
- letter-spacing:4px;
- margin-bottom:18px;
+.hidden{display:none!important}
+.level-label{
+  color:#ff7187;
+  font-size:11px;
+  letter-spacing:3px;
+  font-weight:bold;
 }
-
-h2{font-size:clamp(25px,7vw,38px);letter-spacing:2px}
-
-.desc{
- color:#aaa;
- font-size:14px;
- line-height:1.8;
- max-width:460px;
- margin:16px auto 25px;
+h1,h2{margin:10px 0}
+h1{font-size:29px}
+h2{font-size:23px}
+p{color:#c8b9bd;line-height:1.6}
+.level-card{
+  background:#160e11;
+  border:1px solid #48202a;
+  border-radius:17px;
+  padding:18px;
+  margin-top:15px;
 }
-
-.screen{display:none;animation:show .4s ease}
-.screen.active{display:block}
-
-@keyframes show{
- from{opacity:0;transform:translateY(12px)}
- to{opacity:1;transform:translateY(0)}
+.level-card h2{color:#ff647e}
+.level-card p{font-size:13px;margin-bottom:14px}
+button{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(100deg,#ff244b,#b9002a);
+  color:white;
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition:.2s;
 }
-
-.stage{
- position:relative;
- height:310px;
- max-width:550px;
- width:100%;
- margin:25px auto;
- border:1px solid #662020;
- border-radius:15px;
- background:rgba(10,0,0,.7);
- box-shadow:inset 0 0 35px #250000,0 0 30px #250000;
- overflow:hidden;
+button:active{transform:scale(.97)}
+button:disabled{opacity:.4;cursor:not-allowed}
+.secondary{
+  background:#24191d;
+  border:1px solid #62303b;
+  margin-top:10px;
 }
-
-.stage:before{
- content:"INTERACTION ZONE";
- position:absolute;
- top:15px;
- left:0;
- right:0;
- color:#713333;
- font-size:9px;
- letter-spacing:4px;
+.price{
+  font-size:28px;
+  font-weight:1000;
+  color:#ffbd65;
 }
-
-#runButton{
- position:absolute;
- left:50%;
- top:55%;
- transform:translate(-50%,-50%);
- padding:17px 25px;
- min-width:175px;
- border:1px solid #ff4444;
- border-radius:8px;
- background:linear-gradient(135deg,#b00000,#500000);
- color:white;
- font-size:13px;
- font-weight:900;
- letter-spacing:2px;
- box-shadow:0 0 25px #650000;
- cursor:pointer;
- touch-action:manipulation;
- z-index:2;
+.question-count{
+  display:flex;
+  justify-content:space-between;
+  color:#bdaeb2;
+  font-size:12px;
+  margin:15px 0 9px;
 }
-
-.counter{font-size:12px;color:#aaa;letter-spacing:2px}
-.counter strong{color:#ff3333;font-size:21px}
-
 .progress{
- width:85%;
- max-width:300px;
- height:4px;
- background:#302020;
- margin:15px auto;
- border-radius:10px;
- overflow:hidden;
+  height:7px;
+  border-radius:20px;
+  background:#302126;
+  overflow:hidden;
 }
-
-.fill{
- height:100%;
- width:0;
- background:#ff2222;
- transition:.2s;
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ff244b,#ffad63);
+  transition:.3s;
 }
-
-.message{
- min-height:25px;
- color:#ff5555;
- font-size:12px;
- letter-spacing:1px;
- margin-top:12px;
+.question{
+  font-size:21px;
+  line-height:1.4;
+  margin:24px 0 18px;
+  font-weight:800;
 }
-
-.tag{
- display:inline-block;
- padding:8px 16px;
- border:1px solid #8d2929;
- color:#ff6666;
- font-size:10px;
- letter-spacing:3px;
- margin-bottom:20px;
+.option{
+  width:100%;
+  text-align:left;
+  margin:8px 0;
+  padding:15px;
+  border:1px solid #49303a;
+  border-radius:12px;
+  background:#171114;
+  color:#fff;
+  font-size:14px;
+  line-height:1.4;
 }
-
-.primary{
- display:inline-block;
- margin-top:20px;
- padding:15px 30px;
- border:1px solid #ff4444;
- border-radius:7px;
- background:#8d0000;
- color:white;
- font-weight:bold;
- letter-spacing:2px;
- cursor:pointer;
+.option.selected{
+  border:1px solid #ff4264;
+  background:#3a111d;
+  box-shadow:0 0 15px #ff244b22;
 }
-
-.primary:hover{background:#c00000}
-
-.payment{
- max-width:430px;
- margin:25px auto;
- padding:25px 18px;
- border:1px solid #702222;
- border-radius:12px;
- background:rgba(35,0,0,.45);
+.option:disabled{opacity:1}
+.result{text-align:center;padding:30px 15px}
+.result-icon{font-size:55px}
+.result-score{
+  font-size:clamp(34px,9vw,49px);
+  font-weight:1000;
+  color:#ff5573;
+  margin:18px 0;
+  text-shadow:0 0 25px #ff244b55;
 }
-
-.payNumber{
- font-size:23px;
- font-weight:bold;
- letter-spacing:2px;
- color:#ff7777;
- margin:12px 0;
+.result-sub{color:#bdaeb2;font-size:13px}
+.input{
+  width:100%;
+  padding:15px;
+  margin:12px 0;
+  background:#100c0e;
+  border:1px solid #63303c;
+  border-radius:11px;
+  color:#fff;
+  font-size:16px;
+  outline:none;
 }
-
-.payAmount{font-size:30px;font-weight:bold;margin:12px}
-
-.field{
- display:block;
- width:100%;
- padding:15px;
- margin-top:15px;
- border:1px solid #6b2929;
- border-radius:7px;
- background:#100707;
- color:white;
- font-size:15px;
- outline:none;
-}
-
+.input:focus{border-color:#ff4566}
 .note{
- font-size:11px;
- color:#999;
- line-height:1.7;
- margin-top:15px;
+  font-size:11px;
+  color:#a9989e;
+  line-height:1.6;
+  margin-top:13px;
 }
-
-.footer{
- margin-top:45px;
- color:#555;
- font-size:10px;
- letter-spacing:3px;
+.copy-btn{background:#2b171e;border:1px solid #783344}
+.status{
+  font-size:13px;
+  margin-top:12px;
+  color:#ffbd65;
+  text-align:center;
+}
+footer{
+  text-align:center;
+  color:#77676c;
+  font-size:11px;
+  padding:15px 0;
 }
 </style>
 </head>
@@ -215,277 +180,367 @@ h2{font-size:clamp(25px,7vw,38px);letter-spacing:2px}
 <div class="container">
 
 <header>
- <h1 class="logo">NOTHING</h1>
- <p class="subtitle">THE NOTHING CLUB</p>
+  <div class="logo">AURA <span>CHECK</span></div>
+  <div class="tagline">TEST YOUR GEN Z ENERGY</div>
 </header>
 
-<div class="line"></div>
+<!-- HOME -->
+<section id="home" class="card">
+  <div class="level-label">WELCOME TO THE AURA UNIVERSE</div>
+  <h1>What's your aura? 👀</h1>
+  <p>Take the situations. Choose your moves. Collect your aura points.</p>
 
-<!-- GAME -->
-<section id="gameScreen" class="screen active">
+  <div class="level-card">
+    <div class="level-label">LEVEL 01 · FREE</div>
+    <h2>AURA FARMER 🌱</h2>
+    <p>3 Gen Z situations. Show what you've got.</p>
+    <button onclick="startLevel(1)">START LEVEL 1</button>
+  </div>
 
- <div class="status">SYSTEM CHALLENGE / 001</div>
-
- <h2>DON'T CLICK ME.</h2>
-
- <p class="desc">
- Five times I'll escape. Try to catch me.
- Your sixth attempt is your chance.
- </p>
-
- <div class="stage" id="stage">
-  <button id="runButton">DON'T CLICK ME</button>
- </div>
-
- <div class="counter">
-  ESCAPE ATTEMPTS:
-  <strong id="count">0</strong> / 5
- </div>
-
- <div class="progress">
-  <div class="fill" id="fill"></div>
- </div>
-
- <p class="message" id="message">
-  SYSTEM READY. TRY TO CATCH ME.
- </p>
+  <div class="level-card">
+    <div class="level-label">LEVEL 02 · PREMIUM</div>
+    <h2>AURA OVERLORD 👑</h2>
+    <p>5 harder situations. Unlock your next aura challenge.</p>
+    <div class="price">৳50</div>
+    <button onclick="showPayment()">UNLOCK LEVEL 2</button>
+  </div>
 </section>
 
-<!-- LEVEL 1 COMPLETE -->
-<section id="completeScreen" class="screen">
+<!-- QUIZ -->
+<section id="quiz" class="card hidden">
+  <div class="level-label" id="quizLevel">LEVEL 01</div>
+  <h2 id="quizName">AURA FARMER</h2>
 
- <div class="tag">LEVEL 01 / CLEARED</div>
+  <div class="question-count">
+    <span id="questionNumber">Question 1/3</span>
+    <span id="progressText">0%</span>
+  </div>
+  <div class="progress">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
 
- <h2>YOU CAUGHT IT.</h2>
+  <div class="question" id="questionText"></div>
+  <div id="options"></div>
+  <button id="nextBtn" disabled onclick="nextQuestion()">NEXT</button>
+  <button class="secondary" onclick="goHome()">EXIT QUIZ</button>
+</section>
 
- <p class="desc">
- You finally caught the button.
- But the game isn't over.
- </p>
-
- <h2 style="color:#ff3333;margin:25px 0">
- LEVEL 1 COMPLETE
- </h2>
-
- <button class="primary" onclick="showScreen('paymentScreen')">
- UNLOCK LEVEL 2 →
- </button>
-
+<!-- RESULT -->
+<section id="result" class="card hidden result">
+  <div class="result-icon" id="resultIcon">🔥</div>
+  <div class="level-label">YOUR RESULT IS IN</div>
+  <h2 id="resultLevel">AURA FARMER</h2>
+  <div class="result-score" id="resultScore">AURA+ 10 LAKH</div>
+  <p id="resultMessage"></p>
+  <div class="result-sub" id="correctCount"></div>
+  <button onclick="goHome()" style="margin-top:25px">BACK TO HOME</button>
+  <button class="secondary" id="resultNext" onclick="showPayment()">UNLOCK LEVEL 2 · ৳50</button>
 </section>
 
 <!-- PAYMENT -->
-<section id="paymentScreen" class="screen">
+<section id="payment" class="card hidden">
+  <div class="level-label">PREMIUM ACCESS</div>
+  <h1>AURA OVERLORD 👑</h1>
+  <p>Unlock 5 exclusive Gen Z situations and chase 20 LAKH AURA!</p>
 
- <div class="tag">LEVEL 02 / PAYMENT REQUIRED</div>
+  <div class="level-card">
+    <p>Send payment through bKash</p>
+    <div class="price">৳50</div>
+    <h2 id="bkashNumber">01819401004</h2>
+    <button class="copy-btn" onclick="copyNumber()">COPY BKASH NUMBER</button>
+  </div>
 
- <h2>ONE LAST STEP.</h2>
+  <p>After payment, enter your Transaction ID below.</p>
+  <input class="input" id="trxId" placeholder="Enter Transaction ID" maxlength="20">
+  <button onclick="unlockDemo()">SUBMIT TRANSACTION ID</button>
+  <div class="status" id="paymentStatus"></div>
 
- <p class="desc">
- Complete the payment instruction to continue.
- </p>
-
- <div class="payment">
-
-  <p style="color:#ff7777;letter-spacing:3px;font-size:12px">
-   bKash PERSONAL
-  </p>
-
-  <div class="payAmount">৳10</div>
-
-  <p style="color:#aaa;font-size:12px">
-   Send Money to this number
-  </p>
-
-  <div class="payNumber">01819401004</div>
-
-  <button class="primary" style="margin-top:5px"
-   onclick="copyNumber()">
-   COPY NUMBER
-  </button>
-
-  <input class="field" id="trxid"
-   type="text" maxlength="20"
-   placeholder="Enter Transaction ID">
-
-  <button class="primary" style="width:100%"
-   onclick="verifyDemo()">
-   SUBMIT TRANSACTION ID
-  </button>
-
-  <p class="note">
-   Enter the Transaction ID received after payment.
-   This demo checks the ID format only. It does not
-   verify the actual bKash transaction.
-  </p>
-
-  <p id="payMessage" class="message"></p>
-
- </div>
+  <div class="note">
+    Demo mode: this page checks only the Transaction ID format.
+    It does not verify whether money was actually received.
+    Real payment verification requires a secure backend and official bKash integration.
+  </div>
+  <button class="secondary" onclick="goHome()">BACK</button>
 </section>
 
-<!-- LEVEL 2 UNLOCKED -->
-<section id="levelTwoScreen" class="screen">
-
- <div class="tag">LEVEL 02 / UNLOCKED</div>
-
- <h2>WELCOME TO NOTHING.</h2>
-
- <p class="desc">
- You made it. Your next challenge begins now.
- </p>
-
- <h2 style="color:#ff3333;margin:30px 0">
- LEVEL 2 UNLOCKED
- </h2>
-
- <button class="primary" onclick="location.reload()">
- PLAY AGAIN
- </button>
-
-</section>
-
-<div class="footer">
- NOTHING IS WHAT IT SEEMS.
- <br><br>
- © 2026 NOTHING CLUB
-</div>
+<footer>© 2026 AURA CHECK · MADE FOR GEN Z</footer>
 
 </div>
 
 <script>
-const button = document.getElementById("runButton");
-const stage = document.getElementById("stage");
+const questions = {
+  1: [
+    {
+      q: "Your crush leaves you on seen. What's your move? 💀",
+      options: [
+        "Double text again and again",
+        "Post a story just for them",
+        "Move on. Main character energy."
+      ],
+      answer: 2
+    },
+    {
+      q: "Your friends say '5 minutes' but arrive after 1 hour. You...",
+      options: [
+        "Wait like an NPC",
+        "Order food and enjoy",
+        "Leave. Your time is premium."
+      ],
+      answer: 2
+    },
+    {
+      q: "Someone says your outfit is mid. Your response?",
+      options: [
+        "Start a whole argument",
+        "Thanks for the feedback 😭",
+        "I dress for myself. Stay pressed."
+      ],
+      answer: 2
+    }
+  ],
 
-let escapes = 0;
-let completed = false;
-let lastMove = 0;
+  2: [
+    {
+      q: "Your group chat is dead for 3 days. What do you do?",
+      options: [
+        "Send 50 messages",
+        "Drop one random meme",
+        "Create a new group and disappear"
+      ],
+      answer: 1
+    },
+    {
+      q: "Someone copies your whole personality. Your reaction?",
+      options: [
+        "Get angry and fight",
+        "Let them be my fan",
+        "Originals don't compete."
+      ],
+      answer: 2
+    },
+    {
+      q: "You accidentally wave at someone who wasn't waving at you.",
+      options: [
+        "Pretend you were fixing your hair",
+        "Wave harder",
+        "Disappear from Earth"
+      ],
+      answer: 0
+    },
+    {
+      q: "Your friend says they have tea but says 'I'll tell you later'.",
+      options: [
+        "Beg for the tea",
+        "Say 'spill now or never'",
+        "Become the tea yourself"
+      ],
+      answer: 1
+    },
+    {
+      q: "You walk into a room and everyone looks at you.",
+      options: [
+        "Check if my shirt is inside out",
+        "Act like nothing happened",
+        "Give them a main character moment"
+      ],
+      answer: 2
+    }
+  ]
+};
 
-function showScreen(id){
- document.querySelectorAll(".screen").forEach(function(s){
-  s.classList.remove("active");
- });
- document.getElementById(id).classList.add("active");
+let currentLevel = 1;
+let currentQuestion = 0;
+let correctAnswers = 0;
+let selectedAnswer = null;
+
+function hideAll(){
+  ["home","quiz","result","payment"].forEach(id=>{
+    document.getElementById(id).classList.add("hidden");
+  });
 }
 
-function escapeButton(pointerX,pointerY){
-
- if(completed || escapes >= 5) return;
-
- const rect = stage.getBoundingClientRect();
- const bw = button.offsetWidth;
- const bh = button.offsetHeight;
-
- const minX = 12;
- const minY = 45;
- const maxX = Math.max(minX,rect.width-bw-12);
- const maxY = Math.max(minY,rect.height-bh-12);
-
- let x,y,tries=0;
-
- do{
-  x = minX + Math.random()*(maxX-minX);
-  y = minY + Math.random()*(maxY-minY);
-  tries++;
- }while(
-  tries < 50 &&
-  Math.hypot(
-   rect.left+x+bw/2-pointerX,
-   rect.top+y+bh/2-pointerY
-  ) < 130
- );
-
- escapes++;
-
- document.getElementById("count").textContent=escapes;
- document.getElementById("fill").style.width=
-  (escapes/5*100)+"%";
-
- document.getElementById("message").textContent=
-  escapes===5
-  ? "FINAL CHANCE. CATCH ME NOW!"
-  : "NICE TRY. I'M STILL FASTER.";
-
- button.style.left=(x+bw/2)+"px";
- button.style.top=(y+bh/2)+"px";
+function goHome(){
+  hideAll();
+  document.getElementById("home").classList.remove("hidden");
 }
 
-function finishLevel(){
- if(completed || escapes<5) return;
+function startLevel(level){
+  if(level === 2 && localStorage.getItem("auraLevel2Unlocked") !== "yes"){
+    showPayment();
+    return;
+  }
 
- completed=true;
- button.style.display="none";
+  currentLevel = level;
+  currentQuestion = 0;
+  correctAnswers = 0;
+  selectedAnswer = null;
 
- document.getElementById("message").textContent="ACCESS GRANTED.";
+  hideAll();
+  document.getElementById("quiz").classList.remove("hidden");
 
- setTimeout(function(){
-  showScreen("completeScreen");
- },400);
+  document.getElementById("quizLevel").textContent =
+    level === 1 ? "LEVEL 01 · FREE" : "LEVEL 02 · PREMIUM";
+
+  document.getElementById("quizName").textContent =
+    level === 1 ? "AURA FARMER 🌱" : "AURA OVERLORD 👑";
+
+  showQuestion();
 }
 
-/* Desktop: escape before click */
-button.addEventListener("pointerenter",function(e){
+function showQuestion(){
+  const list = questions[currentLevel];
+  const item = list[currentQuestion];
 
- if(e.pointerType!=="mouse" || escapes>=5 || completed) return;
+  selectedAnswer = null;
 
- const now=Date.now();
- if(now-lastMove<250) return;
- lastMove=now;
+  document.getElementById("questionNumber").textContent =
+    "Question " + (currentQuestion+1) + "/" + list.length;
 
- escapeButton(e.clientX,e.clientY);
-});
+  const progress = Math.round((currentQuestion/list.length)*100);
+  document.getElementById("progressText").textContent = progress+"%";
+  document.getElementById("progressFill").style.width = progress+"%";
 
-/* Mobile: escape immediately on touch */
-button.addEventListener("pointerdown",function(e){
+  document.getElementById("questionText").textContent = item.q;
 
- if(e.pointerType!=="touch" || completed) return;
+  const optionsBox = document.getElementById("options");
+  optionsBox.innerHTML = "";
 
- if(escapes<5){
-  e.preventDefault();
-  escapeButton(e.clientX,e.clientY);
- }
-});
+  item.options.forEach((option,index)=>{
+    const btn = document.createElement("button");
+    btn.className = "option";
+    btn.textContent = option;
 
-/* Sixth click succeeds */
-button.addEventListener("click",function(){
- finishLevel();
-});
+    btn.onclick = ()=>{
+      selectedAnswer = index;
+      document.querySelectorAll(".option").forEach(el=>{
+        el.classList.remove("selected");
+      });
+      btn.classList.add("selected");
+      document.getElementById("nextBtn").disabled = false;
+    };
+
+    optionsBox.appendChild(btn);
+  });
+
+  document.getElementById("nextBtn").disabled = true;
+  document.getElementById("nextBtn").textContent =
+    currentQuestion === list.length-1 ? "SEE MY AURA" : "NEXT";
+}
+
+function nextQuestion(){
+  if(selectedAnswer === null) return;
+
+  const list = questions[currentLevel];
+
+  if(selectedAnswer === list[currentQuestion].answer){
+    correctAnswers++;
+  }
+
+  currentQuestion++;
+
+  if(currentQuestion < list.length){
+    showQuestion();
+  }else{
+    showResult();
+  }
+}
+
+function getAura(level,correct){
+  if(level === 1){
+    return [0,5,7,10][correct];
+  }
+  return [0,4,8,12,16,20][correct];
+}
+
+function showResult(){
+  hideAll();
+  document.getElementById("result").classList.remove("hidden");
+
+  const total = questions[currentLevel].length;
+  const aura = getAura(currentLevel,correctAnswers);
+
+  document.getElementById("resultLevel").textContent =
+    currentLevel === 1 ? "AURA FARMER 🌱" : "AURA OVERLORD 👑";
+
+  document.getElementById("resultScore").textContent =
+    "AURA+ " + aura + " LAKH";
+
+  document.getElementById("correctCount").textContent =
+    correctAnswers + " / " + total + " correct answers";
+
+  document.getElementById("resultIcon").textContent =
+    aura === 0 ? "💀" : aura >= 16 ? "👑" : aura >= 10 ? "🔥" : "🥀";
+
+  let message = "";
+
+  if(aura === 0){
+    message = "Bro... your aura went missing 💀";
+  }else if(currentLevel === 1 && aura === 10){
+    message = "Perfect run! You're farming aura like a pro 🔥";
+  }else if(currentLevel === 2 && aura === 20){
+    message = "ABSOLUTE CINEMA. You are the final boss 👑";
+  }else if(aura >= 10){
+    message = "Big W! Your aura is looking strong.";
+  }else{
+    message = "Not bad. Keep farming that aura 🌱";
+  }
+
+  document.getElementById("resultMessage").textContent = message;
+
+  const next = document.getElementById("resultNext");
+  if(currentLevel === 1){
+    next.classList.remove("hidden");
+    next.textContent = "UNLOCK AURA OVERLORD · ৳50";
+  }else{
+    next.classList.add("hidden");
+  }
+}
+
+function showPayment(){
+  hideAll();
+  document.getElementById("payment").classList.remove("hidden");
+  document.getElementById("paymentStatus").textContent = "";
+}
 
 function copyNumber(){
+  const number = "01819401004";
 
- const number="01819401004";
- const msg=document.getElementById("payMessage");
-
- if(navigator.clipboard && window.isSecureContext){
-  navigator.clipboard.writeText(number).then(function(){
-   msg.textContent="NUMBER COPIED.";
-  }).catch(function(){
-   msg.textContent="Number: "+number;
-  });
- }else{
-  msg.textContent="Number: "+number;
- }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(number).then(()=>{
+      document.getElementById("paymentStatus").textContent =
+        "bKash number copied!";
+    }).catch(()=>{
+      document.getElementById("paymentStatus").textContent =
+        "Number: " + number;
+    });
+  }else{
+    document.getElementById("paymentStatus").textContent =
+      "Number: " + number;
+  }
 }
 
-/* DEMO FORMAT CHECK ONLY - NOT REAL PAYMENT VERIFICATION */
-function verifyDemo(){
+function unlockDemo(){
+  const trx = document.getElementById("trxId").value.trim();
+  const status = document.getElementById("paymentStatus");
 
- const id=document.getElementById("trxid").value.trim();
- const msg=document.getElementById("payMessage");
+  if(!/^[A-Za-z0-9]{10}$/.test(trx)){
+    status.textContent = "Enter a 10-character Transaction ID.";
+    return;
+  }
 
- if(!/^[A-Za-z0-9]{10}$/.test(id)){
-  msg.textContent="Enter a valid 10-character Transaction ID format.";
-  return;
- }
+  // DEMO ONLY: This does not verify a real bKash payment.
+  localStorage.setItem("auraLevel2Unlocked","yes");
+  localStorage.setItem("auraDemoTrx",trx);
 
- msg.textContent="Format accepted. Opening Level 2...";
+  status.textContent = "Demo access unlocked! Level 2 is ready.";
 
- setTimeout(function(){
-  showScreen("levelTwoScreen");
- },700);
+  setTimeout(()=>{
+    startLevel(2);
+  },900);
 }
 </script>
 
-<!-- STATCOUNTER -->
+<!-- StatCounter -->
 <script type="text/javascript">
 var sc_project=13366282;
 var sc_invisible=1;
