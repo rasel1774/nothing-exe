@@ -8,39 +8,64 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 body{
  min-height:100vh;
- background:radial-gradient(ellipse at center,#350707,#100303 55%,#050505);
- color:#fff;
+ background:radial-gradient(ellipse at center,#390707,#100303 55%,#050505);
+ color:white;
  font-family:Arial,sans-serif;
  text-align:center;
  padding:30px 15px;
+ overflow-x:hidden;
 }
+
 .container{max-width:650px;margin:auto}
+
 .logo{
  font-size:clamp(48px,12vw,76px);
  font-weight:1000;
  letter-spacing:12px;
- text-shadow:0 0 25px #8d0000;
+ text-shadow:0 0 25px #a00000;
 }
-.subtitle{font-size:10px;letter-spacing:5px;color:#999;margin-top:8px}
+
+.subtitle{
+ color:#999;
+ font-size:10px;
+ letter-spacing:5px;
+ margin-top:8px;
+}
+
 .line{
  height:1px;
  background:linear-gradient(90deg,transparent,#b00000,transparent);
  margin:30px 0;
 }
-.status{font-size:11px;color:#ff4444;letter-spacing:4px;margin-bottom:18px}
-h2{font-size:clamp(25px,7vw,38px);letter-spacing:2px}
-.desc{
- color:#aaa;font-size:14px;line-height:1.8;
- max-width:460px;margin:16px auto 25px;
+
+.status{
+ color:#ff4444;
+ font-size:11px;
+ letter-spacing:4px;
+ margin-bottom:18px;
 }
+
+h2{font-size:clamp(25px,7vw,38px);letter-spacing:2px}
+
+.desc{
+ color:#aaa;
+ font-size:14px;
+ line-height:1.8;
+ max-width:460px;
+ margin:16px auto 25px;
+}
+
 .screen{display:none;animation:show .4s ease}
 .screen.active{display:block}
+
 @keyframes show{
  from{opacity:0;transform:translateY(12px)}
  to{opacity:1;transform:translateY(0)}
 }
+
 .stage{
  position:relative;
  height:310px;
@@ -53,60 +78,136 @@ h2{font-size:clamp(25px,7vw,38px);letter-spacing:2px}
  box-shadow:inset 0 0 35px #250000,0 0 30px #250000;
  overflow:hidden;
 }
+
 .stage:before{
  content:"INTERACTION ZONE";
- position:absolute;top:15px;left:0;right:0;
- color:#713333;font-size:9px;letter-spacing:4px;
+ position:absolute;
+ top:15px;
+ left:0;
+ right:0;
+ color:#713333;
+ font-size:9px;
+ letter-spacing:4px;
 }
+
 #runButton{
  position:absolute;
- left:50%;top:55%;
+ left:50%;
+ top:55%;
  transform:translate(-50%,-50%);
  padding:17px 25px;
  min-width:175px;
  border:1px solid #ff4444;
  border-radius:8px;
  background:linear-gradient(135deg,#b00000,#500000);
- color:white;font-size:13px;font-weight:900;
+ color:white;
+ font-size:13px;
+ font-weight:900;
  letter-spacing:2px;
  box-shadow:0 0 25px #650000;
  cursor:pointer;
  touch-action:manipulation;
+ z-index:2;
 }
+
 .counter{font-size:12px;color:#aaa;letter-spacing:2px}
 .counter strong{color:#ff3333;font-size:21px}
+
 .progress{
- width:85%;max-width:300px;height:4px;
- background:#302020;margin:15px auto;border-radius:10px;overflow:hidden;
+ width:85%;
+ max-width:300px;
+ height:4px;
+ background:#302020;
+ margin:15px auto;
+ border-radius:10px;
+ overflow:hidden;
 }
-.fill{height:100%;width:0;background:#ff2222;transition:.2s}
-.message{min-height:25px;color:#ff5555;font-size:12px;letter-spacing:1px}
+
+.fill{
+ height:100%;
+ width:0;
+ background:#ff2222;
+ transition:.2s;
+}
+
+.message{
+ min-height:25px;
+ color:#ff5555;
+ font-size:12px;
+ letter-spacing:1px;
+ margin-top:12px;
+}
+
 .tag{
- display:inline-block;padding:8px 16px;
- border:1px solid #8d2929;color:#ff6666;
- font-size:10px;letter-spacing:3px;margin-bottom:20px;
+ display:inline-block;
+ padding:8px 16px;
+ border:1px solid #8d2929;
+ color:#ff6666;
+ font-size:10px;
+ letter-spacing:3px;
+ margin-bottom:20px;
 }
+
 .primary{
- display:inline-block;margin-top:20px;padding:15px 30px;
- border:1px solid #ff4444;border-radius:7px;
- background:#8d0000;color:white;font-weight:bold;
- letter-spacing:2px;cursor:pointer;
+ display:inline-block;
+ margin-top:20px;
+ padding:15px 30px;
+ border:1px solid #ff4444;
+ border-radius:7px;
+ background:#8d0000;
+ color:white;
+ font-weight:bold;
+ letter-spacing:2px;
+ cursor:pointer;
 }
+
 .primary:hover{background:#c00000}
+
 .payment{
- max-width:430px;margin:25px auto;padding:25px 18px;
- border:1px solid #702222;border-radius:12px;
+ max-width:430px;
+ margin:25px auto;
+ padding:25px 18px;
+ border:1px solid #702222;
+ border-radius:12px;
  background:rgba(35,0,0,.45);
 }
-.payNumber{font-size:23px;font-weight:bold;letter-spacing:2px;color:#ff7777;margin:12px 0}
-.payAmount{font-size:30px;font-weight:bold;margin:12px}
-.field{
- display:block;width:100%;padding:15px;margin-top:15px;
- border:1px solid #6b2929;border-radius:7px;
- background:#100707;color:white;font-size:15px;outline:none;
+
+.payNumber{
+ font-size:23px;
+ font-weight:bold;
+ letter-spacing:2px;
+ color:#ff7777;
+ margin:12px 0;
 }
-.note{font-size:11px;color:#999;line-height:1.7;margin-top:15px}
-.footer{margin-top:45px;color:#555;font-size:10px;letter-spacing:3px}
+
+.payAmount{font-size:30px;font-weight:bold;margin:12px}
+
+.field{
+ display:block;
+ width:100%;
+ padding:15px;
+ margin-top:15px;
+ border:1px solid #6b2929;
+ border-radius:7px;
+ background:#100707;
+ color:white;
+ font-size:15px;
+ outline:none;
+}
+
+.note{
+ font-size:11px;
+ color:#999;
+ line-height:1.7;
+ margin-top:15px;
+}
+
+.footer{
+ margin-top:45px;
+ color:#555;
+ font-size:10px;
+ letter-spacing:3px;
+}
 </style>
 </head>
 
@@ -120,10 +221,13 @@ h2{font-size:clamp(25px,7vw,38px);letter-spacing:2px}
 
 <div class="line"></div>
 
-<!-- LEVEL 1 GAME -->
+<!-- GAME -->
 <section id="gameScreen" class="screen active">
+
  <div class="status">SYSTEM CHALLENGE / 001</div>
+
  <h2>DON'T CLICK ME.</h2>
+
  <p class="desc">
  Five times I'll escape. Try to catch me.
  Your sixth attempt is your chance.
@@ -134,187 +238,247 @@ h2{font-size:clamp(25px,7vw,38px);letter-spacing:2px}
  </div>
 
  <div class="counter">
-  ESCAPE ATTEMPTS: <strong id="count">0</strong> / 5
+  ESCAPE ATTEMPTS:
+  <strong id="count">0</strong> / 5
  </div>
- <div class="progress"><div class="fill" id="fill"></div></div>
- <p class="message" id="message">SYSTEM READY. TRY TO CATCH ME.</p>
+
+ <div class="progress">
+  <div class="fill" id="fill"></div>
+ </div>
+
+ <p class="message" id="message">
+  SYSTEM READY. TRY TO CATCH ME.
+ </p>
 </section>
 
 <!-- LEVEL 1 COMPLETE -->
 <section id="completeScreen" class="screen">
+
  <div class="tag">LEVEL 01 / CLEARED</div>
+
  <h2>YOU CAUGHT IT.</h2>
- <p class="desc">You finally caught the button. But the game isn't over.</p>
- <h2 style="color:#ff3333;margin:25px 0">LEVEL 1 COMPLETE</h2>
+
+ <p class="desc">
+ You finally caught the button.
+ But the game isn't over.
+ </p>
+
+ <h2 style="color:#ff3333;margin:25px 0">
+ LEVEL 1 COMPLETE
+ </h2>
+
  <button class="primary" onclick="showScreen('paymentScreen')">
-  UNLOCK LEVEL 2 →
+ UNLOCK LEVEL 2 →
  </button>
+
 </section>
 
-<!-- PAYMENT SCREEN -->
+<!-- PAYMENT -->
 <section id="paymentScreen" class="screen">
+
  <div class="tag">LEVEL 02 / PAYMENT REQUIRED</div>
+
  <h2>ONE LAST STEP.</h2>
- <p class="desc">Complete the payment instruction to continue.</p>
+
+ <p class="desc">
+ Complete the payment instruction to continue.
+ </p>
 
  <div class="payment">
+
   <p style="color:#ff7777;letter-spacing:3px;font-size:12px">
    bKash PERSONAL
   </p>
+
   <div class="payAmount">৳10</div>
-  <p style="color:#aaa;font-size:12px">Send Money to this number</p>
-  <div class="payNumber" id="bkashNumber">01819401004</div>
+
+  <p style="color:#aaa;font-size:12px">
+   Send Money to this number
+  </p>
+
+  <div class="payNumber">01819401004</div>
 
   <button class="primary" style="margin-top:5px"
-   onclick="copyNumber()">COPY NUMBER</button>
+   onclick="copyNumber()">
+   COPY NUMBER
+  </button>
 
   <input class="field" id="trxid"
    type="text" maxlength="20"
    placeholder="Enter Transaction ID">
 
   <button class="primary" style="width:100%"
-   onclick="verifyDemo()">SUBMIT TRANSACTION ID</button>
+   onclick="verifyDemo()">
+   SUBMIT TRANSACTION ID
+  </button>
 
   <p class="note">
    Enter the Transaction ID received after payment.
-   This demo checks the ID format only. It does not verify
-   the actual bKash transaction.
+   This demo checks the ID format only. It does not
+   verify the actual bKash transaction.
   </p>
-  <p id="payMessage" class="message" style="margin-top:15px"></p>
+
+  <p id="payMessage" class="message"></p>
+
  </div>
 </section>
 
-<!-- LEVEL 2 -->
+<!-- LEVEL 2 UNLOCKED -->
 <section id="levelTwoScreen" class="screen">
+
  <div class="tag">LEVEL 02 / UNLOCKED</div>
+
  <h2>WELCOME TO NOTHING.</h2>
- <p class="desc">You made it. Level 2 is now unlocked.</p>
- <h2 style="color:#ff3333;margin:30px 0">LEVEL 2 COMPLETE</h2>
- <button class="primary" onclick="location.reload()">PLAY AGAIN</button>
+
+ <p class="desc">
+ You made it. Your next challenge begins now.
+ </p>
+
+ <h2 style="color:#ff3333;margin:30px 0">
+ LEVEL 2 UNLOCKED
+ </h2>
+
+ <button class="primary" onclick="location.reload()">
+ PLAY AGAIN
+ </button>
+
 </section>
 
 <div class="footer">
  NOTHING IS WHAT IT SEEMS.
- <br><br>© 2026 NOTHING CLUB
+ <br><br>
+ © 2026 NOTHING CLUB
 </div>
+
 </div>
 
 <script>
 const button = document.getElementById("runButton");
 const stage = document.getElementById("stage");
-const countText = document.getElementById("count");
-const fill = document.getElementById("fill");
-const message = document.getElementById("message");
 
 let escapes = 0;
 let completed = false;
+let lastMove = 0;
 
-function escapeButton(pointerX, pointerY){
- const stageRect = stage.getBoundingClientRect();
- const bw = button.offsetWidth;
- const bh = button.offsetHeight;
- const pad = 15;
-
- const maxX = stageRect.width - bw - pad;
- const maxY = stageRect.height - bh - 55;
-
- let x, y, tries = 0;
-
- do {
-  x = pad + Math.random() * Math.max(1,maxX-pad);
-  y = 45 + Math.random() * Math.max(1,maxY-45);
-  tries++;
- } while (
-  tries < 30 &&
-  Math.hypot(
-   stageRect.left+x+bw/2-pointerX,
-   stageRect.top+y+bh/2-pointerY
-  ) < 120
- );
-
- button.style.left = (x+bw/2)+"px";
- button.style.top = (y+bh/2)+"px";
- button.style.transform = "translate(-50%,-50%)";
+function showScreen(id){
+ document.querySelectorAll(".screen").forEach(function(s){
+  s.classList.remove("active");
+ });
+ document.getElementById(id).classList.add("active");
 }
 
-function escapeAttempt(x,y){
+function escapeButton(pointerX,pointerY){
+
  if(completed || escapes >= 5) return;
 
+ const rect = stage.getBoundingClientRect();
+ const bw = button.offsetWidth;
+ const bh = button.offsetHeight;
+
+ const minX = 12;
+ const minY = 45;
+ const maxX = Math.max(minX,rect.width-bw-12);
+ const maxY = Math.max(minY,rect.height-bh-12);
+
+ let x,y,tries=0;
+
+ do{
+  x = minX + Math.random()*(maxX-minX);
+  y = minY + Math.random()*(maxY-minY);
+  tries++;
+ }while(
+  tries < 50 &&
+  Math.hypot(
+   rect.left+x+bw/2-pointerX,
+   rect.top+y+bh/2-pointerY
+  ) < 130
+ );
+
  escapes++;
- countText.textContent = escapes;
- fill.style.width = (escapes/5*100)+"%";
 
- if(escapes < 5){
-  message.textContent = "NICE TRY. I'M STILL FASTER.";
- } else {
-  message.textContent = "FINAL CHANCE. NOW CATCH ME!";
- }
+ document.getElementById("count").textContent=escapes;
+ document.getElementById("fill").style.width=
+  (escapes/5*100)+"%";
 
- escapeButton(x,y);
+ document.getElementById("message").textContent=
+  escapes===5
+  ? "FINAL CHANCE. CATCH ME NOW!"
+  : "NICE TRY. I'M STILL FASTER.";
+
+ button.style.left=(x+bw/2)+"px";
+ button.style.top=(y+bh/2)+"px";
 }
 
-/* Desktop: button escapes before click, on mouse hover */
-button.addEventListener("mouseenter", function(e){
- if(window.matchMedia("(hover: hover)").matches && escapes < 5){
-  escapeAttempt(e.clientX,e.clientY);
- }
-});
+function finishLevel(){
+ if(completed || escapes<5) return;
 
-/* Mobile: button escapes on touch BEFORE click */
-button.addEventListener("touchstart", function(e){
- if(escapes < 5){
-  e.preventDefault();
-  const touch = e.touches[0];
-  escapeAttempt(touch.clientX,touch.clientY);
- }
-},{passive:false});
+ completed=true;
+ button.style.display="none";
 
-/* Sixth click succeeds */
-button.addEventListener("click", function(){
- if(completed || escapes < 5) return;
-
- completed = true;
- button.style.display = "none";
- message.textContent = "ACCESS GRANTED.";
+ document.getElementById("message").textContent="ACCESS GRANTED.";
 
  setTimeout(function(){
   showScreen("completeScreen");
  },400);
-});
-
-function showScreen(id){
- document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
- document.getElementById(id).classList.add("active");
 }
 
+/* Desktop: escape before click */
+button.addEventListener("pointerenter",function(e){
+
+ if(e.pointerType!=="mouse" || escapes>=5 || completed) return;
+
+ const now=Date.now();
+ if(now-lastMove<250) return;
+ lastMove=now;
+
+ escapeButton(e.clientX,e.clientY);
+});
+
+/* Mobile: escape immediately on touch */
+button.addEventListener("pointerdown",function(e){
+
+ if(e.pointerType!=="touch" || completed) return;
+
+ if(escapes<5){
+  e.preventDefault();
+  escapeButton(e.clientX,e.clientY);
+ }
+});
+
+/* Sixth click succeeds */
+button.addEventListener("click",function(){
+ finishLevel();
+});
+
 function copyNumber(){
- const number = "01819401004";
+
+ const number="01819401004";
+ const msg=document.getElementById("payMessage");
+
  if(navigator.clipboard && window.isSecureContext){
-  navigator.clipboard.writeText(number).then(()=>{
-   document.getElementById("payMessage").textContent="NUMBER COPIED.";
-  }).catch(()=>{
-   document.getElementById("payMessage").textContent="Number: "+number;
+  navigator.clipboard.writeText(number).then(function(){
+   msg.textContent="NUMBER COPIED.";
+  }).catch(function(){
+   msg.textContent="Number: "+number;
   });
  }else{
-  document.getElementById("payMessage").textContent="Number: "+number;
+  msg.textContent="Number: "+number;
  }
 }
 
-/*
- DEMO ONLY:
- Checks the common 10-character TrxID format.
- Does NOT confirm that bKash received the money.
-*/
+/* DEMO FORMAT CHECK ONLY - NOT REAL PAYMENT VERIFICATION */
 function verifyDemo(){
- const id = document.getElementById("trxid").value.trim();
- const msg = document.getElementById("payMessage");
+
+ const id=document.getElementById("trxid").value.trim();
+ const msg=document.getElementById("payMessage");
 
  if(!/^[A-Za-z0-9]{10}$/.test(id)){
-  msg.textContent="Please enter a 10-character Transaction ID.";
+  msg.textContent="Enter a valid 10-character Transaction ID format.";
   return;
  }
 
- msg.textContent="Format accepted. Demo access granted.";
+ msg.textContent="Format accepted. Opening Level 2...";
+
  setTimeout(function(){
   showScreen("levelTwoScreen");
  },700);
