@@ -90,11 +90,18 @@ transition:.2s;
 }
 
 button:active{transform:scale(.97)}
+button:disabled{opacity:.4;cursor:not-allowed}
 
 .secondary{
 background:#24191d;
 border:1px solid #62303b;
 margin-top:10px;
+}
+
+.price{
+font-size:28px;
+font-weight:1000;
+color:#ffbd65;
 }
 
 .question-count{
@@ -145,7 +152,10 @@ background:#3a111d;
 box-shadow:0 0 15px #ff244b22;
 }
 
-.result{text-align:center;padding:30px 15px}
+.result{
+text-align:center;
+padding:30px 15px;
+}
 
 .result-icon{font-size:55px}
 
@@ -158,6 +168,35 @@ text-shadow:0 0 25px #ff244b55;
 }
 
 .result-sub{color:#bdaeb2;font-size:13px}
+
+.input{
+width:100%;
+padding:15px;
+margin:12px 0;
+background:#100c0e;
+border:1px solid #63303c;
+border-radius:11px;
+color:#fff;
+font-size:16px;
+outline:none;
+}
+
+.input:focus{border-color:#ff4566}
+
+.status{
+font-size:13px;
+margin-top:12px;
+color:#ffbd65;
+text-align:center;
+line-height:1.5;
+}
+
+.note{
+font-size:11px;
+color:#a9989e;
+line-height:1.6;
+margin-top:13px;
+}
 
 footer{
 text-align:center;
@@ -176,33 +215,40 @@ padding:15px 0;
 <div class="tagline">TEST YOUR GEN Z ENERGY</div>
 </header>
 
-<!-- HOME -->
+<!-- HOME: ONLY LEVEL 1 -->
+
 <section id="home" class="card">
 
 <div class="level-label">WELCOME TO THE AURA UNIVERSE</div>
+
 <h1>What's your aura? 👀</h1>
-<p>Take the situations. Choose your moves. Collect your aura points.</p>
+
+<p>
+Take the situations. Choose your moves.
+Collect your aura points.
+</p>
 
 <div class="level-card">
+
 <div class="level-label">LEVEL 01 · FREE</div>
+
 <h2>AURA FARMER 🌱</h2>
+
 <p>3 Gen Z situations. Show what you've got.</p>
-<button onclick="startLevel(1)">START LEVEL 1</button>
-</div>
 
-<div class="level-card">
-<div class="level-label">LEVEL 02 · UNLOCKABLE</div>
-<h2>AURA OVERLORD 👑</h2>
-<p>5 harder situations. Reach the next level.</p>
-<button onclick="startLevel(2)">START LEVEL 2</button>
-</div>
+<button onclick="startLevel(1)">
+START LEVEL 1
+</button>
 
+</div>
 </section>
 
 <!-- QUIZ -->
+
 <section id="quiz" class="card hidden">
 
 <div class="level-label" id="quizLevel">LEVEL 01</div>
+
 <h2 id="quizName">AURA FARMER</h2>
 
 <div class="question-count">
@@ -215,34 +261,106 @@ padding:15px 0;
 </div>
 
 <div class="question" id="questionText"></div>
+
 <div id="options"></div>
 
-<button id="nextBtn" disabled onclick="nextQuestion()">NEXT</button>
-<button class="secondary" onclick="goHome()">EXIT QUIZ</button>
+<button id="nextBtn" disabled onclick="nextQuestion()">
+NEXT
+</button>
+
+<button class="secondary" onclick="goHome()">
+EXIT QUIZ
+</button>
 
 </section>
 
 <!-- RESULT -->
+
 <section id="result" class="card hidden result">
 
 <div class="result-icon" id="resultIcon">🔥</div>
+
 <div class="level-label">YOUR RESULT IS IN</div>
+
 <h2 id="resultLevel">AURA FARMER</h2>
 
-<div class="result-score" id="resultScore">AURA+ 10 LAKH</div>
+<div class="result-score" id="resultScore">
+AURA+ 10 LAKH
+</div>
 
 <p id="resultMessage"></p>
+
 <div class="result-sub" id="correctCount"></div>
 
-<button id="resultNext" onclick="startLevel(2)" style="margin-top:25px">
-LEVEL UP · START LEVEL 2 👑
+<button id="resultNext" onclick="showPayment()" style="margin-top:25px">
+UNLOCK LEVEL 2 · ৳50 👑
 </button>
 
-<button class="secondary" onclick="goHome()">BACK TO HOME</button>
+<button class="secondary" onclick="goHome()">
+BACK TO HOME
+</button>
 
 </section>
 
-<footer>© 2026 AURA CHECK · MADE FOR GEN Z</footer>
+<!-- PAYMENT -->
+
+<section id="payment" class="card hidden">
+
+<div class="level-label">PREMIUM ACCESS</div>
+
+<h1>AURA OVERLORD 👑</h1>
+
+<p>
+Unlock 5 exclusive Gen Z situations
+and chase 20 LAKH AURA!
+</p>
+
+<div class="level-card">
+
+<p>Send ৳50 through bKash to this number:</p>
+
+<div class="price">৳50</div>
+
+<h2 id="bkashNumber">01819401004</h2>
+
+<button class="secondary" onclick="copyNumber()">
+COPY BKASH NUMBER
+</button>
+
+</div>
+
+<p>After payment, enter your Transaction ID.</p>
+
+<input
+class="input"
+id="trxId"
+placeholder="Enter bKash Transaction ID"
+maxlength="20"
+autocomplete="off"
+>
+
+<button onclick="submitPayment()">
+SUBMIT TRANSACTION ID
+</button>
+
+<div class="status" id="paymentStatus"></div>
+
+<div class="note">
+Important: This page does not verify real bKash payments.
+Entering a Transaction ID alone will NOT unlock Level 2.
+A secure server and official bKash payment verification
+must be connected before real payments can be accepted.
+</div>
+
+<button class="secondary" onclick="goHome()">
+BACK TO HOME
+</button>
+
+</section>
+
+<footer>
+© 2026 AURA CHECK · MADE FOR GEN Z
+</footer>
 
 </div>
 
@@ -250,7 +368,8 @@ LEVEL UP · START LEVEL 2 👑
 
 const questions = {
 
-1:[
+1: [
+
 {
 q:"Your crush leaves you on seen. What's your move? 💀",
 options:[
@@ -260,6 +379,7 @@ options:[
 ],
 answer:2
 },
+
 {
 q:"Your friends say '5 minutes' but arrive after 1 hour. You...",
 options:[
@@ -269,6 +389,7 @@ options:[
 ],
 answer:2
 },
+
 {
 q:"Someone says your outfit is mid. Your response?",
 options:[
@@ -278,9 +399,11 @@ options:[
 ],
 answer:2
 }
+
 ],
 
-2:[
+2: [
+
 {
 q:"Your group chat is dead for 3 days. What do you do?",
 options:[
@@ -290,6 +413,7 @@ options:[
 ],
 answer:1
 },
+
 {
 q:"Someone copies your whole personality. Your reaction?",
 options:[
@@ -299,6 +423,7 @@ options:[
 ],
 answer:2
 },
+
 {
 q:"You accidentally wave at someone who wasn't waving at you.",
 options:[
@@ -308,6 +433,7 @@ options:[
 ],
 answer:0
 },
+
 {
 q:"Your friend says they have tea but says 'I'll tell you later'.",
 options:[
@@ -317,6 +443,7 @@ options:[
 ],
 answer:1
 },
+
 {
 q:"You walk into a room and everyone looks at you.",
 options:[
@@ -326,6 +453,7 @@ options:[
 ],
 answer:2
 }
+
 ]
 
 };
@@ -336,19 +464,34 @@ let correctAnswers=0;
 let selectedAnswer=null;
 
 function hideAll(){
-["home","quiz","result"].forEach(id=>{
+
+[
+"home",
+"quiz",
+"result",
+"payment"
+].forEach(id=>{
 document.getElementById(id).classList.add("hidden");
 });
+
 }
 
 function goHome(){
+
 hideAll();
+
 document.getElementById("home").classList.remove("hidden");
+
 }
 
 function startLevel(level){
 
-currentLevel=level;
+if(level===2){
+showPayment();
+return;
+}
+
+currentLevel=1;
 currentQuestion=0;
 correctAnswers=0;
 selectedAnswer=null;
@@ -358,12 +501,13 @@ hideAll();
 document.getElementById("quiz").classList.remove("hidden");
 
 document.getElementById("quizLevel").textContent=
-level===1?"LEVEL 01 · FREE":"LEVEL 02 · UNLOCKED";
+"LEVEL 01 · FREE";
 
 document.getElementById("quizName").textContent=
-level===1?"AURA FARMER 🌱":"AURA OVERLORD 👑";
+"AURA FARMER 🌱";
 
 showQuestion();
+
 }
 
 function showQuestion(){
@@ -376,15 +520,22 @@ selectedAnswer=null;
 document.getElementById("questionNumber").textContent=
 "Question "+(currentQuestion+1)+"/"+list.length;
 
-const progress=Math.round((currentQuestion/list.length)*100);
+const progress=Math.round(
+(currentQuestion/list.length)*100
+);
 
-document.getElementById("progressText").textContent=progress+"%";
-document.getElementById("progressFill").style.width=progress+"%";
+document.getElementById("progressText").textContent=
+progress+"%";
 
-document.getElementById("questionText").textContent=item.q;
+document.getElementById("progressFill").style.width=
+progress+"%";
 
-const optionsBox=document.getElementById("options");
-optionsBox.innerHTML="";
+document.getElementById("questionText").textContent=
+item.q;
+
+const box=document.getElementById("options");
+
+box.innerHTML="";
 
 item.options.forEach((option,index)=>{
 
@@ -407,14 +558,16 @@ document.getElementById("nextBtn").disabled=false;
 
 };
 
-optionsBox.appendChild(btn);
+box.appendChild(btn);
 
 });
 
 document.getElementById("nextBtn").disabled=true;
 
 document.getElementById("nextBtn").textContent=
-currentQuestion===list.length-1?"SEE MY AURA":"NEXT";
+currentQuestion===list.length-1
+?"SEE MY AURA"
+:"NEXT";
 
 }
 
@@ -422,15 +575,16 @@ function nextQuestion(){
 
 if(selectedAnswer===null)return;
 
-const list=questions[currentLevel];
-
-if(selectedAnswer===list[currentQuestion].answer){
+if(
+selectedAnswer===
+questions[currentLevel][currentQuestion].answer
+){
 correctAnswers++;
 }
 
 currentQuestion++;
 
-if(currentQuestion<list.length){
+if(currentQuestion<questions[currentLevel].length){
 showQuestion();
 }else{
 showResult();
@@ -440,11 +594,9 @@ showResult();
 
 function getAura(level,correct){
 
-if(level===1){
-return [0,5,7,10][correct];
-}
-
-return [0,4,8,12,16,20][correct];
+return level===1
+?[0,5,7,10][correct]
+:[0,4,8,12,16,20][correct];
 
 }
 
@@ -454,11 +606,11 @@ hideAll();
 
 document.getElementById("result").classList.remove("hidden");
 
-const total=questions[currentLevel].length;
-const aura=getAura(currentLevel,correctAnswers);
+const aura=getAura(1,correctAnswers);
+const total=questions[1].length;
 
 document.getElementById("resultLevel").textContent=
-currentLevel===1?"AURA FARMER 🌱":"AURA OVERLORD 👑";
+"AURA FARMER 🌱";
 
 document.getElementById("resultScore").textContent=
 "AURA+ "+aura+" LAKH";
@@ -467,37 +619,77 @@ document.getElementById("correctCount").textContent=
 correctAnswers+" / "+total+" correct answers";
 
 document.getElementById("resultIcon").textContent=
-aura===0?"💀":aura>=16?"👑":aura>=10?"🔥":"🥀";
+aura===0?"💀":aura===10?"🔥":"🥀";
 
 let message="";
 
-if(aura===0){
-message="Bro... your aura went missing 💀";
-}else if(currentLevel===1 && aura===10){
+if(aura===10){
 message="Perfect run! You're farming aura like a pro 🔥";
-}else if(currentLevel===2 && aura===20){
-message="ABSOLUTE CINEMA. You are the final boss 👑";
-}else if(aura>=10){
-message="Big W! Your aura is looking strong.";
+}else if(aura===0){
+message="Bro... your aura went missing 💀";
 }else{
 message="Not bad. Keep farming that aura 🌱";
 }
 
-document.getElementById("resultMessage").textContent=message;
+document.getElementById("resultMessage").textContent=
+message;
 
-const next=document.getElementById("resultNext");
+}
 
-if(currentLevel===1){
+function showPayment(){
 
-next.classList.remove("hidden");
-next.textContent="LEVEL UP · START LEVEL 2 👑";
-next.onclick=()=>startLevel(2);
+hideAll();
+
+document.getElementById("payment").classList.remove("hidden");
+
+document.getElementById("paymentStatus").textContent="";
+
+}
+
+function copyNumber(){
+
+const number="01819401004";
+
+if(navigator.clipboard && navigator.clipboard.writeText){
+
+navigator.clipboard.writeText(number)
+.then(()=>{
+document.getElementById("paymentStatus").textContent=
+"bKash number copied!";
+})
+.catch(()=>{
+document.getElementById("paymentStatus").textContent=
+"bKash number: "+number;
+});
 
 }else{
 
-next.classList.add("hidden");
+document.getElementById("paymentStatus").textContent=
+"bKash number: "+number;
 
 }
+
+}
+
+function submitPayment(){
+
+const trx=document.getElementById("trxId").value.trim();
+
+const status=document.getElementById("paymentStatus");
+
+if(!/^[A-Za-z0-9]{8,20}$/.test(trx)){
+
+status.textContent=
+"Enter a valid-looking Transaction ID (8–20 characters).";
+
+return;
+
+}
+
+status.textContent=
+"Transaction ID received, but payment is NOT verified. "+
+"Level 2 remains locked. Official bKash verification "+
+"must be connected on a secure backend.";
 
 }
 
